@@ -9,8 +9,11 @@
 
     <ul class="headerRight">
         <li class="headerRight__profile">
-            <img style="height: 32px; width: 32px;" src="../assets/img/user.png" alt="user">
+            <a [routerLink]="['/profile']" routerLinkActive="active">
+                <img style="height: 32px; width: 32px;" src="../assets/img/user.png" alt="user">
+            </a>
         </li>
+
         <li class="headerRight__login">
             <img style="height: 35px; width: 35px;" src="../assets/img/login.png" alt="login">
         </li>

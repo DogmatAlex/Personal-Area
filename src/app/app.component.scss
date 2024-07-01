@@ -9,9 +9,46 @@
       margin-top: 40px;
       margin-left: 60px;
       padding-bottom: 60px;
+
+      & .newToDo {
+        height: 23px;
+        font-size: 16px;
+      }
+
+      & .tasks-container {
+        margin-top: 60px;
+
+        & .container {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 500px;
+          height: 30px;
+          margin-top: 20px;
+  
+          & .task-text {
+            display: flex;
+            flex-direction: column; 
+            justify-content: flex-start; 
+            padding-left: 15px;
+          }
+  
+          & .buttons-container {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 15px; 
+  
+            & button {
+              margin-left: 5px;
+            }
+          }
+          
+        }
+      }
     }
   }
 
 .done {
   background-color: #6bfc43;
+  border-radius: 8px;
 }
