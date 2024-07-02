@@ -1,3 +1,26 @@
-<p>profile works!</p>
+<div class="profile-form" [formGroup]="profileForm">
+    <div class="profile-form__input">
+        <label for="name">Имя</label>
+        <input type="text" id="name" formControlName="name" />
+    </div>
 
+    <div class="profile-form__input">
+        <label for="lastName">Фамилия</label>
+        <input type="text" id="lastName" formControlName="lastName" />
+    </div>
+
+    <div class="profile-form__input">
+        <label for="dateOfBirth">Дата рождения</label>
+        <input type="date" id="dateOfBirth" formControlName="dateOfBirth" />
+    </div>
+
+    <div class="profile-form__input">
+        <label for="city">Город</label>
+        <input type="text" id="city" />
+    </div>
+
+    <button (click)="saveProfile()">Сохранить</button>
+
+
+</div>
 <router-outlet></router-outlet>
