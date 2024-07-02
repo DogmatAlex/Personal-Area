@@ -5,20 +5,24 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
 import { ProfileModule } from './profile/profile.module';
-import { LoginComponent } from './login/login.component';
+import { LoginModule } from './login/login.module';
+import { ToDoModule } from './todo/todo.module';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LoginComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ProfileModule
+    ProfileModule,
+    LoginModule,
+    ToDoModule
   ],
   providers: [
     provideClientHydration()
