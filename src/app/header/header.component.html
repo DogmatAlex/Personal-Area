@@ -1,10 +1,12 @@
 <header>
     <div class="headerLeft">
-        <img src="../assets/img/logo.png" alt="logo">
-        <div class="headerLeft__info">
-            <h3>Personal Area</h3>
-            <p>Личный кабинет</p>
-        </div>
+        <a [routerLink]="['/todo']" routerLinkActive="active">
+            <img src="../assets/img/logo.png" alt="logo">
+            <div class="headerLeft__info">
+                <h3>Personal Area</h3>
+                <p>Личный кабинет</p>
+            </div>
+        </a>
     </div>
 
     <ul class="headerRight">
