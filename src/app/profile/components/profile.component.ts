@@ -11,6 +11,7 @@ export class ProfileComponent {
     name: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     dateOfBirth: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
     city: new FormControl('', Validators.required)
   });
 

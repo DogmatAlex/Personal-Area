@@ -22,7 +22,7 @@ import { ToDoModule } from './todo/todo.module';
     FormsModule,
     ProfileModule,
     LoginModule,
-    ToDoModule
+    ToDoModule,
   ],
   providers: [
     provideClientHydration()

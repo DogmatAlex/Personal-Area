@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile/components/profile.component';
 import { LoginComponent } from './login/components/login.component';
 import { TodoComponent } from './todo/components/todo.component';
+import { AppComponent } from './app.component';
+
 
 const routes: Routes = [
   {
@@ -17,7 +19,9 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
-  }
+  },
+  
+
 ];
 
 @NgModule({
