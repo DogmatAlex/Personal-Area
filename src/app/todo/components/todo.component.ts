@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
@@ -20,18 +21,27 @@ export class TodoComponent {
     name: string;
     description: string;
     isDone: boolean;
-    status: number
+    status: number;
+    date: Date
   }[] = [];
-   
 
+
+  selectDate: Date = new Date();
+   
   public addToDo() {
+    if (this.selectDate < new Date()) { 
+      alert('Вы не можете выбрать дату из прошлого');
+      return;
+    }
+    
     const newId = this.toDoList.length > 0 ? Math.max(...this.toDoList.map(task => task.id)) + 1 : 1;
     this.toDoList.push({ 
       id: newId, // Присваиваем id
       name: this.newToDo, 
       status: 0,
       description: '', // Добавляем описание
-      isDone: false  // Добавляем isDone
+      isDone: false,  // Добавляем isDone
+      date: this.selectDate 
     });
     window.localStorage.setItem('toDoList', JSON.stringify(this.toDoList));
   }

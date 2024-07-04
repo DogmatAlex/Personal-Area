@@ -3,9 +3,18 @@
   margin-left: 60px;
   padding-bottom: 60px;
 
+  & .selectDate {
+    height: 23px;
+    font-size: 17px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
   & .newToDo {
     height: 23px;
     font-size: 17px;
+    border: 2px solid black;
+    border-radius: 8px;
   }
 
   & .btn-addToDo {
@@ -42,6 +51,11 @@
         flex-direction: column;
         justify-content: flex-start;
         padding-left: 15px;
+      }
+
+      & .task-date {
+        display: flex;
+        margin-bottom: 10px;
       }
 
       & .buttons-container {
