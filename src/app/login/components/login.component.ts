@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,13 +8,21 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+
+  authService = inject(AuthService)
+
   public loginForm = new FormGroup({
-    login: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    username: new FormControl(null, Validators.required),
+    password: new FormControl(null, Validators.required),
   });
 
-  public logIn() {
-    console.log(this.loginForm.value);
+
+  public onSubmit() {
+
+    if (this.loginForm.valid) {
+    //@ts-ignore
+    this.authService.login(this.loginForm.value)
+    }
   }
 
   public ngOninit(): void {

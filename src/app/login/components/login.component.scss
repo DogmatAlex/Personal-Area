@@ -7,6 +7,10 @@
     margin-left: 50px;
     margin-top: 50px;
 
+    & h2 {
+        margin-left: 130px;
+    }
+
     &__input {
         display: flex;
         width: 100%;

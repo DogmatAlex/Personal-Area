@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ProfileModule } from './profile/profile.module';
 import { LoginModule } from './login/login.module';
 import { ToDoModule } from './todo/todo.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -23,6 +24,7 @@ import { ToDoModule } from './todo/todo.module';
     ProfileModule,
     LoginModule,
     ToDoModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()

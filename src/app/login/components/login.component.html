@@ -1,16 +1,17 @@
-<div class="login-form" [formGroup]="loginForm">
+<div class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h2>Вход</h2>
     <div class="login-form__input">
-        <label for="login">Логин</label>
-        <input type="text" id="login" formControlName="login" />
+        <label for="username">Username</label>
+        <input type="text" id="username" formControlName="username" />
     </div>
 
 
     <div class="login-form__input">
-        <label for="password">Пароль</label>
+        <label for="password">Password</label>
         <input type="text" id="password" formControlName="password" />
     </div>
 
-    <button (click)="logIn()">Войти</button>
+    <button type="submit" (click)="onSubmit()">Войти</button>
 
 
 </div>
