@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ProfileService } from '../services/profile.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -15,13 +17,31 @@ export class ProfileComponent {
     city: new FormControl('', Validators.required)
   });
 
-  public saveProfile() {
-    if (this.profileForm.valid) {
-      console.log(this.profileForm.value);
+  public isEditMode: boolean = false;
+
+  constructor(private profileService: ProfileService) {}
+
+  public editProfile() {
+    if (this.isEditMode) {
+      if (this.profileForm.valid) {
+        console.log(this.profileForm.value);
+        this.saveProfileData(this.profileForm.value);  // Вызываем метод сохранения
+        this.isEditMode = false;  // После сохранения переводим кнопку обратно в режим Изменить
+      } else {
+        console.log('Форма не валидна');
+      }
     } else {
-      console.log('Форма не валидна');
+      this.isEditMode = true;
     }
-    
+  }
+
+  public saveProfileData(formData: any) {
+    this.profileService.saveProfile(formData)  // через сервис отправляем данные на сервер
+      .subscribe(response => {
+        console.log('Данные успешно сохранены на сервере:', response);
+      }, error => {
+        console.error('Ошибка при сохранении данных на сервере:', error);
+      });
   }
 
   public ngOninit(): void {

@@ -12,9 +12,6 @@
     <div class="login-form__input">
         <label for="password">Password</label>
         <input type="password" id="password" formControlName="password" />
-        @if (!loginForm.controls.password.valid && loginForm.controls.password.touched) {
-        <small>* Это поле обязательно для заполнения</small>
-        }
         <img class="eye" src="../assets/img/eye.png" (click)="passwordVisibility($event)">
     </div>
 
