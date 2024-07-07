@@ -12,8 +12,8 @@ export class LoginComponent {
   authService = inject(AuthService)
 
   public loginForm = new FormGroup({
-    username: new FormControl(null, Validators.required),
-    password: new FormControl(null, Validators.required),
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
   });
 
 
@@ -22,6 +22,8 @@ export class LoginComponent {
     if (this.loginForm.valid) {
     //@ts-ignore
     this.authService.login(this.loginForm.value)
+    } else {
+      alert('Форма не валидна');
     }
   }
 
