@@ -27,6 +27,17 @@ export class LoginComponent {
     }
   }
 
+  public passwordVisibility(event: MouseEvent): void {
+    const passwordInput = document.getElementById('password') as HTMLInputElement;
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+    } else {
+        passwordInput.type = 'password';
+    }
+    (event.target as HTMLElement).classList.toggle('visible');
+}
+
+
   public ngOninit(): void {
     
   }

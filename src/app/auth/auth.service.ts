@@ -7,7 +7,7 @@ import { Injectable, inject } from '@angular/core';
 
 export class AuthService {
   http = inject(HttpClient);
-  login(payload: {username: string, password: string}) {
+  login(payload: {username: String, password: String}) {
     return this.http.post('https://6687000b83c983911b044d6e.mockapi.io/users', payload);
   }
 }

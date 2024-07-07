@@ -21,6 +21,7 @@
         width: 60%;
         height: 30px;
         margin-bottom: 20px;
+        position: relative;
 
         & label {
             font-size: 16px;
@@ -32,11 +33,23 @@
             padding: 8px;
             border: 2px solid #ccc;
             border-radius: 8px;
+            position: relative;
         }
 
         & small {
             color: red;
             font-size: 12px;
+        }
+
+        & .eye {
+            height: 22px;
+            width: 22px;
+            position: absolute;
+            margin-top: 8px;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
         }
     }
 
