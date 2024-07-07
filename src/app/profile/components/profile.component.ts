@@ -10,11 +10,11 @@ import { ProfileService } from '../services/profile.service';
 })
 export class ProfileComponent {
   public profileForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
-    dateOfBirth: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    city: new FormControl('', Validators.required)
+    name: new FormControl({value: '', disabled: true}, Validators.required),
+    lastName: new FormControl({value: '', disabled: true}, Validators.required),
+    dateOfBirth: new FormControl({value: '', disabled: true}, Validators.required),
+    email: new FormControl({value: '', disabled: true}, Validators.required),
+    city: new FormControl({value: '', disabled: true}, Validators.required)
   });
 
   public isEditMode: boolean = false;
@@ -26,12 +26,13 @@ export class ProfileComponent {
       if (this.profileForm.valid) {
         console.log(this.profileForm.value);
         this.saveProfileData(this.profileForm.value);  // Вызываем метод сохранения
-        this.isEditMode = false;  // После сохранения переводим кнопку обратно в режим Изменить
+        this.isEditMode = false; // выход из режима редактирования после сохранения
       } else {
         console.log('Форма не валидна');
       }
     } else {
-      this.isEditMode = true;
+      this.isEditMode = true;   // вход в режим редактирования при нажатии на кнопку Изменить
+      this.profileForm.enable();  // Включаем поля формы для редактирования
     }
   }
 
@@ -39,6 +40,7 @@ export class ProfileComponent {
     this.profileService.saveProfile(formData)  // через сервис отправляем данные на сервер
       .subscribe(response => {
         console.log('Данные успешно сохранены на сервере:', response);
+        this.profileForm.disable();  // Отключаем поля формы после сохранения
       }, error => {
         console.error('Ошибка при сохранении данных на сервере:', error);
       });
