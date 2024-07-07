@@ -16,7 +16,12 @@ export class ProfileComponent {
   });
 
   public saveProfile() {
-    console.log(this.profileForm.value);
+    if (this.profileForm.valid) {
+      console.log(this.profileForm.value);
+    } else {
+      console.log('Форма не валидна');
+    }
+    
   }
 
   public ngOninit(): void {

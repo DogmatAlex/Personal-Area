@@ -20,6 +20,7 @@
   & .btn-addToDo {
     margin-left: 20px;
     height: 30px;
+    width: 150px;
     background-color: rgb(49, 81, 87);
     color: white;
     border-radius: 8px;
@@ -42,9 +43,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 500px;
+      width: 90%;
       height: 40px;
       margin-top: 20px;
+      padding: 10px;
 
       & .task-text {
         display: flex;
@@ -61,10 +63,10 @@
       & .buttons-container {
         display: flex;
         justify-content: flex-end;
-        padding-right: 15px;
+        padding-right: 40px;
 
         & button {
-          margin-left: 5px;
+          margin-left: 8px;
           height: 25px;
           background-color: rgb(49, 81, 87);
           color: white;
@@ -87,6 +89,44 @@
 }
 
 .done {
+  display: flex;
   background-color: #6bfc43;
   border-radius: 8px;
+  max-width: 90%;
+  padding: 0;
+}
+
+
+@media (max-width: 768px) { 
+  .content {
+      margin-left: 10px;
+  }
+  .content h1 {
+      font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) { 
+  .content {
+      margin-left: 0;
+      margin-top: 10px;
+  }
+  .content h1 {
+      font-size: 1.5rem;
+      text-align: center;
+  }
+  .content .tasks-container .container {
+      flex-direction: column; 
+      align-items: flex-start;
+      padding: 5px; 
+  }
+  .content .tasks-container .container .task-text {
+      flex-grow: 0;
+      width: auto;
+      text-align: left; 
+      margin-bottom: 10px; 
+  }
+  .content .tasks-container .container .task-date {
+      text-align: left; /* Выравниваем текст по левому краю */
+  }
 }
