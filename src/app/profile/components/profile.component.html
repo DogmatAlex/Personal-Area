@@ -3,7 +3,7 @@
         <label for="name">Имя</label>
         <input type="text" id="name" formControlName="name" />
         @if (!profileForm.controls.name.valid && profileForm.controls.name.touched) {
-        <small>* Это поле обязательно для заполнения</small>
+        <small>* Имя должно содержать только буквы</small>
         }
     </div>
 
@@ -27,7 +27,7 @@
         <label for="email">Email</label>
         <input type="text" id="email" formControlName="email" />
         @if (!profileForm.controls.email.valid && profileForm.controls.email.touched) {
-        <small>* Это поле обязательно для заполнения</small>
+        <small>* Некорректный ввод email</small>
         }
     </div>
 
