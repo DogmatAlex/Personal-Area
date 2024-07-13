@@ -13,7 +13,7 @@ export class ProfileComponent {
     name: new FormControl({value: '', disabled: true}, Validators.required),
     lastName: new FormControl({value: '', disabled: true}, Validators.required),
     dateOfBirth: new FormControl({value: '', disabled: true}, Validators.required),
-    email: new FormControl({value: '', disabled: true}, Validators.required),
+    email: new FormControl({value: '', disabled: true}, [Validators.required, Validators.email]),
     city: new FormControl({value: '', disabled: true}, Validators.required)
   });
 
@@ -47,6 +47,6 @@ export class ProfileComponent {
   }
 
   public ngOninit(): void {
-    
+    this.profileForm = JSON.parse(window.localStorage.getItem('profileForm') || '[]')
   }
 }
