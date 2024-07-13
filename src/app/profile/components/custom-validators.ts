@@ -7,3 +7,12 @@ export function onlyLettersValidator(): ValidatorFn {
     return valid ? null : { onlyLetters: true };
   };
 }
+
+export function maxLengthValidator(maxLength: number): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    if (control.value && control.value.length > maxLength) {
+      return { maxLength: true };
+    }
+    return null;
+  };
+}
