@@ -16,3 +16,22 @@ export function maxLengthValidator(maxLength: number): ValidatorFn {
     return null;
   };
 }
+
+export function ageValidator(minAge: number): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    if (!control.value) {
+      return null;
+    }
+    
+    const today = new Date();
+    const birthDate = new Date(control.value);
+    let age = today.getFullYear() - birthDate.getFullYear();
+
+    if (today.getMonth() < birthDate.getMonth() || 
+        (today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+
+    return age >= minAge ? null : { minAge: true };
+  };
+}

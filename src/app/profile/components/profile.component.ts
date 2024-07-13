@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ProfileService } from '../services/profile.service';
-import { onlyLettersValidator } from './custom-validators';
+import { onlyLettersValidator, ageValidator } from './custom-validators';
 
 
 
@@ -15,7 +15,7 @@ export class ProfileComponent {
   public profileForm = new FormGroup({
     name: new FormControl({value: '', disabled: true}, [Validators.required, onlyLettersValidator()]),
     lastName: new FormControl({value: '', disabled: true}, [Validators.required, onlyLettersValidator()]),
-    dateOfBirth: new FormControl({value: '', disabled: true}, Validators.required),
+    dateOfBirth: new FormControl({value: '', disabled: true}, [Validators.required, ageValidator(10)]),
     email: new FormControl({value: '', disabled: true}, [Validators.required, Validators.email]),
     city: new FormControl({value: '', disabled: true}, Validators.required)
   });
