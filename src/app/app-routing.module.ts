@@ -1,27 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfileComponent } from './profile/components/profile.component';
-import { LoginComponent } from './login/components/login.component';
-import { TodoComponent } from './todo/components/todo.component';
-import { AppComponent } from './app.component';
 
 
 const routes: Routes = [
   {
     path: 'todo',
-    component: TodoComponent
+    loadChildren: () => import('./todo/todo.module').then((m) => m.ToDoModule)
   },
   {
     path: 'profile',
-    component: ProfileComponent
-    // loadChildren: () => import('./profile/profile.module').then((m) => m.ProfileModule)
+    loadChildren: () => import('./profile/profile.module').then((m) => m.ProfileModule)
   },
   {
     path: 'login',
-    component: LoginComponent
+    loadChildren: () => import('./login/login.module').then((m) => m.LoginModule)
   },
   
-
 ];
 
 @NgModule({
