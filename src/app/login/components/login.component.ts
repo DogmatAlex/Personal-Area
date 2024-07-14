@@ -1,29 +1,32 @@
-import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../auth/auth.service';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
 
-  authService = inject(AuthService);
+export class LoginComponent {
 
   public loginForm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
 
+  isLoggedIn: boolean = false;
 
   public onSubmit() {
-
-    if (this.loginForm.valid) {
-    //@ts-ignore
-    this.authService.login(this.loginForm.value)
+    if (this.isLoggedIn) {
+      this.isLoggedIn = false; // Сбрасываем флаг аутентификации
+      this.loginForm.reset(); // Очищаем поля формы
     } else {
-      alert('Форма не валидна');
+      if (this.loginForm.valid) {
+        this.isLoggedIn = true;  // Устанавливаем флаг аутентификации
+      } else {
+        alert('Форма не валидна');
+      }
     }
   }
 

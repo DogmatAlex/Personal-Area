@@ -15,7 +15,9 @@
         <img class="eye" src="/assets/img/eye.png" (click)="passwordVisibility($event)">
     </div>
 
-    <button type="submit" (click)="onSubmit()" [disabled]="!loginForm.valid">Войти</button>
+    <button type="submit" (click)="onSubmit()" [disabled]="!loginForm.valid">
+        {{ isLoggedIn ? 'Выйти' : 'Войти'}}
+    </button>
 
 
 </div>
