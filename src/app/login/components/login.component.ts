@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
 
@@ -9,7 +9,7 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class LoginComponent {
 
-  authService = inject(AuthService)
+  authService = inject(AuthService);
 
   public loginForm = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -27,17 +27,18 @@ export class LoginComponent {
     }
   }
 
+  @ViewChild('passwordInput') passwordInput!: ElementRef;  // класс, кот. содержит ссылку на DOM элемент
+
   public passwordVisibility(event: MouseEvent): void {
-    const passwordInput = document.getElementById('password') as HTMLInputElement;
-    if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
+    if (this.passwordInput.nativeElement.type === 'password') {   // свойство `ElementRef`, кот. дает доступ к исходному элементу DOM
+      this.passwordInput.nativeElement.type = 'text';
     } else {
-        passwordInput.type = 'password';
+      this.passwordInput.nativeElement.type = 'password';
     }
     (event.target as HTMLElement).classList.toggle('visible');
-}
+  } 
 
-
+  
   public ngOninit(): void {
     
   }
