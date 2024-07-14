@@ -1,5 +1,7 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from '../services/login.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -15,6 +17,10 @@ export class LoginComponent {
     password: new FormControl('', Validators.required),
   });
 
+  loginService = inject(LoginService);
+
+  private loginSubscription: Subscription | undefined;  // Хранение подписки
+
   isLoggedIn: boolean = false;
 
   public onSubmit() {
@@ -23,15 +29,22 @@ export class LoginComponent {
       this.loginForm.reset(); // Очищаем поля формы
     } else {
       if (this.loginForm.valid) {
-        this.isLoggedIn = true;  // Устанавливаем флаг аутентификации
+        this.loginSubscription = this.loginService.login(this.loginForm.value) // Подписка на Observable
+          .subscribe((response) => { 
+              console.log('Успешная авторизация:', response);  // Обработка успешной авторизации
+              this.isLoggedIn = true;  // Устанавливаем флаг аутентификации
+            }, (error) => {
+              console.error('Ошибка авторизации:', error);
+            });
+
       } else {
         alert('Форма не валидна');
       }
     }
   }
 
-  @ViewChild('passwordInput') passwordInput!: ElementRef;  // класс, кот. содержит ссылку на DOM элемент
 
+  @ViewChild('passwordInput') passwordInput!: ElementRef;  // класс, кот. содержит ссылку на DOM элемент
   public passwordVisibility(event: MouseEvent): void {
     if (this.passwordInput.nativeElement.type === 'password') {   // свойство `ElementRef`, кот. дает доступ к исходному элементу DOM
       this.passwordInput.nativeElement.type = 'text';
