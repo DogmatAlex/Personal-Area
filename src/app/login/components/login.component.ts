@@ -25,16 +25,21 @@ export class LoginComponent {
 
   public onSubmit() {
     if (this.isLoggedIn) {
-      this.isLoggedIn = false; // Сбрасываем флаг аутентификации
-      this.loginForm.reset(); // Очищаем поля формы
+      this.isLoggedIn = false;  // Сбрасываем флаг аутентификации
+      this.loginForm.reset();  // Очищаем поля формы
+      localStorage.removeItem('isLoggedIn');  // Удаляем значение из localStorage
     } else {
       if (this.loginForm.valid) {
         this.loginSubscription = this.loginService.login(this.loginForm.value) // Подписка на Observable
           .subscribe((response) => { 
               console.log('Успешная авторизация:', response);  // Обработка успешной авторизации
               this.isLoggedIn = true;  // Устанавливаем флаг аутентификации
+              localStorage.setItem('isLoggedIn', 'true');  // Сохраняем состояние авторизации в localStorage
             }, (error) => {
               console.error('Ошибка авторизации:', error);
+              
+              localStorage.removeItem('isLoggedIn');  // Очищаем значение из localStorage при ошибке
+                    alert('Ошибка авторизации. Попробуйте снова.');
             });
 
       } else {
