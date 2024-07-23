@@ -1,5 +1,6 @@
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { Subscription } from 'rxjs';
 
@@ -18,14 +19,15 @@ export class LoginComponent {
   });
 
   loginService = inject(LoginService);
+  router = inject(Router);
 
   private loginSubscription: Subscription | undefined;  // Хранение подписки
 
-  isLoggedIn: boolean = false;
+  isLoggedIn: boolean = false;  // Флаг авторизации
 
   public onSubmit() {
     if (this.isLoggedIn) {
-      this.isLoggedIn = false;  // Сбрасываем флаг аутентификации
+      this.isLoggedIn = false;  // Сбрасываем флаг авторизации
       this.loginForm.reset();  // Очищаем поля формы
       localStorage.removeItem('isLoggedIn');  // Удаляем значение из localStorage
     } else {
@@ -33,8 +35,9 @@ export class LoginComponent {
         this.loginSubscription = this.loginService.login(this.loginForm.value) // Подписка на Observable
           .subscribe((response) => { 
               console.log('Успешная авторизация:', response);  // Обработка успешной авторизации
-              this.isLoggedIn = true;  // Устанавливаем флаг аутентификации
+              this.isLoggedIn = true;  // Устанавливаем флаг авторизации
               localStorage.setItem('isLoggedIn', 'true');  // Сохраняем состояние авторизации в localStorage
+              this.router.navigate(['/todo']);
             }, (error) => {
               console.error('Ошибка авторизации:', error);
               
@@ -61,6 +64,16 @@ export class LoginComponent {
 
   
   public ngOninit(): void {
-    
+    if (localStorage.getItem('isLoggedIn') === 'true') {   // Проверка localStorage при загрузке страницы
+      this.isLoggedIn = true;
+      this.router.navigate(['/todo']);  // Переход на страницу todo, если авторизован
+    }
   }
+
+  ngOnDestroy() {     // Отписка от подписки
+    if (this.loginSubscription) {
+      this.loginSubscription.unsubscribe(); 
+    }
+  }
+
 }
